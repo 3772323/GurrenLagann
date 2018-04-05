@@ -1,0 +1,31 @@
+def update(self):
+		""" Exemple de fonction update : 																																																																																																																																																																																																																																																																																																																																																																									
+			Pour 50 pas fait avancer le robot, puis le tourne pour 20 pas puis s'arrete.
+			Affiche la distance et enregistre une image tous les 10 pas, tourne la tete a gauche et a droite. 
+		"""
+
+		if not self.rot_bool :
+			self.cpt += self.distparcourue()
+			if self.cpt > 700 :
+				if self.cpt_rot < 4 :
+					self.rot_bool = True
+					self.anglePrec = self.robot.get_motor_position()[0]
+				else : 
+					self.robot.stop()
+					self.stop = True
+			elif self.cpt > 500. :
+				self.forward(100)
+			else :
+				self.forward(200)
+		else :
+			
+			print((abs(self.robot.get_motor_position()[0] - self.anglePrec )*math.pi*self.robot.WHEEL_DIAMETER/360 )/(self.robot.WHEEL_BASE_WIDTH))
+			if (abs(self.robot.get_motor_position()[0] - self.anglePrec )*math.pi*self.robot.WHEEL_DIAMETER/360 )/(self.robot.WHEEL_BASE_WIDTH) < math.pi/4 : 
+				self.rotate(-1)
+			else :
+				self.rot_bool = False
+				self.cpt_rot += 1
+				self.cpt = 0
+
+			
+		return

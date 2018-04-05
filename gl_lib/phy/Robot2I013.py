@@ -116,7 +116,7 @@ class Robot2I013(object):
         
         :port: une constante moteur,  MOTOR_LEFT ou MOTOR_RIGHT (ou les deux MOTOR_LEFT+MOTOR_RIGHT).
         :dps: La vitesse limite en degres par seconde (0 pas de limite)
-        """
+        """ 
         self._gpg.set_motor_limits(port,dps=dps)
 
 
